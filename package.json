@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "description": "Display Ascii Art on the console",
   "main": "index.js",
+  "dependencies": {
+    "keypress": "^0.2.1"
+  },
+  "devDependencies": {
+    "jest": "^27.0.1"
+  },
   "scripts": {
     "test": "jest --watchAll --noStackTrace"
   },
