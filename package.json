@@ -1,0 +1,24 @@
+{
+  "name": "ascii-art-reader",
+  "version": "0.1.0",
+  "description": "Display Ascii Art on the console",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll --noStackTrace"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RodrigoN01/ascii-art-reader.git"
+  },
+  "keywords": [
+    "ascii",
+    "art",
+    "reader"
+  ],
+  "author": "Rodrigo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RodrigoN01/ascii-art-reader/issues"
+  },
+  "homepage": "https://github.com/RodrigoN01/ascii-art-reader#readme"
+}
