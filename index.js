@@ -1,72 +1,52 @@
+const readline = require('readline')
+
+// just to run bird file
 const path = require('path')
 const fs = require('fs')
 
-// function to display the file names
+const keaPath = path.join(__dirname + '/data', 'kea.txt')
+const kiwiPath = path.join(__dirname + '/data', 'kiwi.txt')
+const manaiaPath = path.join(__dirname + '/data', 'manaia.txt')
+const nikauPath = path.join(__dirname + '/data', 'nikau.txt')
+const pohutukawaPath = path.join(__dirname + '/data', 'pohutukawa.txt')
 
-function getAsciiList (filePath){
-  fs.readdir(filePath, 'utf8', (err, files) => {
-    if (err) {
-      console.error(err.message)
-      return
-    }
-    manipulateArr(files)
-    console.log(files[0])
+const asciiArr = [keaPath, kiwiPath, manaiaPath, nikauPath, pohutukawaPath]
+
+function pressEnter() {
+  const resultLine = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
   })
+
+  resultLine.question(
+    'Choose the Ascii art you would like to see and press enter: \n Press 0 for Kea \n Press 1 for Kiwi \n Press 2 for Manaia \n Press 3 for Nikau \n Press 4 for Pohutukawa \n',
+    function (input) {
+      resultLine.close()
+
+      if (input >= 0 && input < 5) {
+        showBird(asciiArr[input])
+      } else {
+        console.log("Oops!! This doesn't exist")
+      }
+    }
+  )
 }
 
-const dataPath = path.join(__dirname, './data')
-getAsciiList(dataPath)
-
-
-function manipulateArr (filesArr) {
-  const asciObj = Object.assign({}, filesArr)
-
-  console.log(asciObj)
-  console.log("Choose which number artwork you would like to view:")
-}
-
-// function to get user to input number
-
-var readline = require('readline');
-
-readline.emitKeypressEvents(process.stdin);
-
-if (process.stdin.isTTY)
-    process.stdin.setRawMode(true);
-
-process.stdin.on('keypress', (_, key) => {
-  if (key.name === '0'){
-    const dataPath = path.join(__dirname, './data/kea.txt')
-    getAsciiImg(dataPath)
-  }
-  if (key.name === '1'){
-    const dataPath = path.join(__dirname, './data/kiwi.txt')
-    getAsciiImg(dataPath)
-  }
-  if (key.name === '2'){
-    const dataPath = path.join(__dirname, './data/manaia.txt')
-    getAsciiImg(dataPath)
-  }
-  if (key.name === '3'){
-    const dataPath = path.join(__dirname, './data/nikau.txt')
-    getAsciiImg(dataPath)
-  }
-  if (key.name === '4'){
-    const dataPath = path.join(__dirname, './data/pohutukawa.txt')
-    getAsciiImg(dataPath)
+pressEnter(asciiArr, (err, contents) => {
+  if (err) {
+    console.log(err.message)
+  } else {
+    console.log(contents)
   }
 })
 
-
-function getAsciiImg(filePath) {
-
-  fs.readFile(filePath, 'utf8', (err, contents) => {
-
+// Show ascii art on the console
+function showBird(filepath) {
+  fs.readFile(filepath, 'utf8', (err, contents) => {
     if (err) {
       console.error(err.message)
       return
     }
     console.log(contents)
-    process.exit()
   })
 }
